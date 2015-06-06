@@ -1,0 +1,35 @@
+{
+	"name": "mediawiki/at-ease",
+	"description": "Safe replacement to @ for suppressing warnings.",
+	"license": "GPL-2.0+",
+	"homepage": "https://www.mediawiki.org/wiki/at-ease",
+	"authors": [
+		{
+			"name": "Tim Starling",
+			"email": "tstarling@wikimedia.org"
+		},
+		{
+			"name": "MediaWiki developers",
+			"email": "wikitech-l@lists.wikimedia.org"
+		}
+	],
+	"autoload": {
+		"files": ["src/Functions.php"]
+	},
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"jakub-onderka/php-parallel-lint": "0.8.*",
+		"squizlabs/php_codesniffer": "2.3.0",
+		"mediawiki/mediawiki-codesniffer": "0.1.0",
+		"phpunit/phpunit": "~4.5"
+	},
+	"scripts": {
+		"test": [
+			"parallel-lint . --exclude vendor",
+			"phpcs -p",
+			"phpunit"
+		]
+	}
+}
