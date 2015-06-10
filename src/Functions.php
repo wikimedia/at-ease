@@ -56,5 +56,5 @@ function suppressWarnings( $end = false ) {
  * Restore error level to previous value
  */
 function restoreWarnings() {
-	SuppressWarnings( true );
+	suppressWarnings( true );
 }
