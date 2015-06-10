@@ -1,4 +1,4 @@
-[![Latest Stable Version](https://poser.pugx.org/wikimedia/at-ease/v/stable.svg)](https://packagist.org/packages/wikimedia/at-ease) [![License](https://poser.pugx.org/wikimedia/at-ease/license.svg)](https://packagist.org/packages/wikimedia/at-ease)
+[![Latest Stable Version](https://poser.pugx.org/mediawiki/at-ease/v/stable.svg)](https://packagist.org/packages/mediawiki/at-ease) [![License](https://poser.pugx.org/mediawiki/at-ease/license.svg)](https://packagist.org/packages/mediawiki/at-ease)
 
 at-ease
 =====================
