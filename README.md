@@ -26,9 +26,9 @@ Usage
 -----
 
 ```
-\MediaWiki\SuppressWarnings();
+\MediaWiki\suppressWarnings();
 $content = file_get_contents( 'foobar.txt' );
-\MediaWiki\RestoreWarnings();
+\MediaWiki\restoreWarnings();
 ```
 
 Running tests
