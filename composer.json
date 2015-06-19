@@ -14,15 +14,17 @@
 		}
 	],
 	"autoload": {
-		"files": ["src/Functions.php"]
+		"files": [
+			"src/Functions.php"
+		]
 	},
 	"require": {
 		"php": ">=5.3.3"
 	},
 	"require-dev": {
-		"jakub-onderka/php-parallel-lint": "0.8.*",
+		"jakub-onderka/php-parallel-lint": "0.9",
 		"squizlabs/php_codesniffer": "2.3.0",
-		"mediawiki/mediawiki-codesniffer": "0.1.0",
+		"mediawiki/mediawiki-codesniffer": "0.3.0",
 		"phpunit/phpunit": "~4.5"
 	},
 	"scripts": {
