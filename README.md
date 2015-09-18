@@ -25,9 +25,14 @@ to suppress the warnings and prevent PHP from being noisy.
 Usage
 -----
 
+    // Suppress warnings in a block of code:
     \MediaWiki\suppressWarnings();
     $content = file_get_contents( 'foobar.txt' );
     \MediaWiki\restoreWarnings();
+
+
+    // ..or in a callback function:
+    \MediaWiki\quietCall( 'file_get_contents', 'foobar.txt' );
 
 
 Running tests

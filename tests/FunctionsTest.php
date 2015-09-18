@@ -19,12 +19,38 @@
  */
 
 class FunctionsTest extends PHPUnit_Framework_TestCase {
-	public function testFunctions() {
+
+	/**
+	 * Ensure that operations that would normally trigger warnings are passed
+	 * over in silence when enclosed in warning suppress / restore calls.
+	 *
+	 * @covers MediaWiki\suppressWarnings
+	 * @covers MediaWiki\restoreWarnings
+	 */
+	public function testWarningSuppression() {
 		$a = array();
 		MediaWiki\suppressWarnings();
 		$a['unsetkey'];
 		MediaWiki\restoreWarnings();
 		// No warnings generated
 		$this->assertTrue( true );
+	}
+
+	/**
+	 * Ensure that MediaWiki\quietCall calls the callback function with the
+	 * correct parameters, that it returns the callback's return value, and
+	 * that warnings (if any) are suppressed.
+	 *
+	 * @covers MediaWiki\quietCall
+	 */
+	public function testQuietCall() {
+		$this->assertEquals(
+			MediaWiki\quietCall( 'filemtime', __FILE__ ),
+			filemtime( __FILE__ )
+		);
+
+		$this->assertFalse(
+			MediaWiki\quietCall( 'filemtime', '/this/file/does/not/exist' )
+		);
 	}
 }
