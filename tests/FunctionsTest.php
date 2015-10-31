@@ -33,15 +33,46 @@ class FunctionsTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue( true );
 	}
 
+	public static function dummyStaticMethod( $x ) {
+		return $x * 2;
+	}
+
+	public function dummyInstanceMethod( $x ) {
+		return $x * 2;
+	}
+
 	/**
 	 * Ensure that MediaWiki\quietCall calls the callback function with the
 	 * correct parameters, that it returns the callback's return value, and
 	 * that warnings (if any) are suppressed.
 	 */
 	public function testQuietCall() {
+		$double = function ( $num ) {
+			return $num * 2;
+		};
+
 		$this->assertEquals(
 			MediaWiki\quietCall( 'filemtime', __FILE__ ),
-			filemtime( __FILE__ )
+			filemtime( __FILE__ ),
+			'MediaWiki\quietCall() with built-in function'
+		);
+
+		$this->assertEquals(
+			MediaWiki\quietCall( 'FunctionsTest::dummyStaticMethod', 24 ),
+			FunctionsTest::dummyStaticMethod( 24 ),
+			'MediaWiki\quietCall() with static method'
+		);
+
+		$this->assertEquals(
+			MediaWiki\quietCall( array( $this, 'dummyInstanceMethod' ), 24 ),
+			$this->dummyInstanceMethod( 24 ),
+			'MediaWiki\quietCall() with instance method'
+		);
+
+		$this->assertEquals(
+			MediaWiki\quietCall( $double, 24 ),
+			$double( 24 ),
+			'MediaWiki\quietCall() with closure'
 		);
 
 		$this->assertFalse(
