@@ -53,7 +53,7 @@ during the [MediaWiki 1.26][] development cycle.
 ---
 [@ error control operator]: https://php.net/manual/en/language.operators.errorcontrol.php
 [MediaWiki 1.3]: https://www.mediawiki.org/wiki/MediaWiki_1.3
-[r4261]: https://www.mediawiki.org/wiki/Special:Code/MediaWiki/r4261
+[r4261]: https://phabricator.wikimedia.org/rSVN4261
 [MediaWiki 1.26]: https://www.mediawiki.org/wiki/MediaWiki_1.26
 [Latest Stable Version]: https://poser.pugx.org/mediawiki/at-ease/v/stable.svg
 [License]: https://poser.pugx.org/mediawiki/at-ease/license.svg
