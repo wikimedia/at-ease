@@ -65,7 +65,7 @@ function restoreWarnings() {
  * @param callable $callback Function to call
  * @return mixed
  */
-function quietCall( $callback /*, parameters... */ ) {
+function quietCall( callable $callback /*, parameters... */ ) {
 	$args = array_slice( func_get_args(), 1 );
 	suppressWarnings();
 	$rv = call_user_func_array( $callback, $args );
