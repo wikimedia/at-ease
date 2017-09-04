@@ -1,5 +1,5 @@
 {
-	"name": "mediawiki/at-ease",
+	"name": "wikimedia/at-ease",
 	"description": "Safe replacement to @ for suppressing warnings.",
 	"license": "GPL-2.0+",
 	"homepage": "https://www.mediawiki.org/wiki/at-ease",
