@@ -25,7 +25,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase {
 	 * over in silence when enclosed in warning suppress / restore calls.
 	 */
 	public function testWarningSuppression() {
-		$a = array();
+		$a = [];
 		MediaWiki\suppressWarnings();
 		$a['unsetkey'];
 		MediaWiki\restoreWarnings();
@@ -59,12 +59,12 @@ class FunctionsTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertEquals(
 			MediaWiki\quietCall( 'FunctionsTest::dummyStaticMethod', 24 ),
-			FunctionsTest::dummyStaticMethod( 24 ),
+			self::dummyStaticMethod( 24 ),
 			'MediaWiki\quietCall() with static method'
 		);
 
 		$this->assertEquals(
-			MediaWiki\quietCall( array( $this, 'dummyInstanceMethod' ), 24 ),
+			MediaWiki\quietCall( [ $this, 'dummyInstanceMethod' ], 24 ),
 			$this->dummyInstanceMethod( 24 ),
 			'MediaWiki\quietCall() with instance method'
 		);
