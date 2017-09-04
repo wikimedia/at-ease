@@ -18,7 +18,7 @@
  * @file
  */
 
-namespace MediaWiki;
+namespace Wikimedia;
 
 /**
  * Reference-counted warning suppression

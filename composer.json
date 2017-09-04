@@ -15,7 +15,8 @@
 	],
 	"autoload": {
 		"files": [
-			"src/Functions.php"
+			"src/MediaWiki/Functions.php",
+			"src/Wikimedia/Functions.php"
 		]
 	},
 	"require": {

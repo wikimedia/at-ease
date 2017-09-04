@@ -26,9 +26,9 @@ class FunctionsTest extends PHPUnit_Framework_TestCase {
 	 */
 	public function testWarningSuppression() {
 		$a = [];
-		MediaWiki\suppressWarnings();
+		\Wikimedia\suppressWarnings();
 		$a['unsetkey'];
-		MediaWiki\restoreWarnings();
+		\Wikimedia\restoreWarnings();
 		// No warnings generated
 		$this->assertTrue( true );
 	}
@@ -42,7 +42,7 @@ class FunctionsTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Ensure that MediaWiki\quietCall calls the callback function with the
+	 * Ensure that Wikimedia\quietCall calls the callback function with the
 	 * correct parameters, that it returns the callback's return value, and
 	 * that warnings (if any) are suppressed.
 	 */
@@ -52,31 +52,31 @@ class FunctionsTest extends PHPUnit_Framework_TestCase {
 		};
 
 		$this->assertEquals(
-			MediaWiki\quietCall( 'filemtime', __FILE__ ),
+			\Wikimedia\quietCall( 'filemtime', __FILE__ ),
 			filemtime( __FILE__ ),
-			'MediaWiki\quietCall() with built-in function'
+			'with built-in function'
 		);
 
 		$this->assertEquals(
-			MediaWiki\quietCall( 'FunctionsTest::dummyStaticMethod', 24 ),
+			\Wikimedia\quietCall( 'FunctionsTest::dummyStaticMethod', 24 ),
 			self::dummyStaticMethod( 24 ),
-			'MediaWiki\quietCall() with static method'
+			'with static method'
 		);
 
 		$this->assertEquals(
-			MediaWiki\quietCall( [ $this, 'dummyInstanceMethod' ], 24 ),
+			\Wikimedia\quietCall( [ $this, 'dummyInstanceMethod' ], 24 ),
 			$this->dummyInstanceMethod( 24 ),
-			'MediaWiki\quietCall() with instance method'
+			'with instance method'
 		);
 
 		$this->assertEquals(
-			MediaWiki\quietCall( $double, 24 ),
+			\Wikimedia\quietCall( $double, 24 ),
 			$double( 24 ),
-			'MediaWiki\quietCall() with closure'
+			'with closure'
 		);
 
 		$this->assertFalse(
-			MediaWiki\quietCall( 'filemtime', '/this/file/does/not/exist' )
+			\Wikimedia\quietCall( 'filemtime', '/this/file/does/not/exist' )
 		);
 	}
 }
