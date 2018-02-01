@@ -18,38 +18,61 @@
  * @file
  */
 
-namespace Wikimedia;
+namespace Wikimedia\AtEase;
 
-use Wikimedia\AtEase\AtEase;
+class AtEase {
+	private static $suppressCount = 0;
+	private static $originalLevel = false;
 
-if ( !function_exists( __NAMESPACE__ . '\\suppressWarnings' ) ) {
 	/**
 	 * Reference-counted warning suppression
 	 *
-	 * @deprecated use AtEase::suppressWarnings
 	 * @param bool $end Whether to restore warnings
 	 */
-	function suppressWarnings( $end = false ) {
-		AtEase::suppressWarnings( $end );
+	public static function suppressWarnings( $end = false ) {
+		if ( $end ) {
+			if ( self::$suppressCount ) {
+				--self::$suppressCount;
+				if ( !self::$suppressCount ) {
+					error_reporting( self::$originalLevel );
+				}
+			}
+		} else {
+			if ( !self::$suppressCount ) {
+				self::$originalLevel =
+					error_reporting( E_ALL & ~(
+						E_WARNING |
+						E_NOTICE |
+						E_USER_WARNING |
+						E_USER_NOTICE |
+						E_DEPRECATED |
+						E_USER_DEPRECATED |
+						E_STRICT
+					) );
+			}
+			++self::$suppressCount;
+		}
 	}
 
 	/**
 	 * Restore error level to previous value
-	 *
-	 * @deprecated use AtEase::restoreWarnings
 	 */
-	function restoreWarnings() {
-		AtEase::restoreWarnings();
+	public static function restoreWarnings() {
+		self::suppressWarnings( true );
 	}
 
 	/**
 	 * Call the callback given by the first parameter, suppressing any warnings.
 	 *
-	 * @deprecated use AtEase::quietCall
 	 * @param callable $callback Function to call
 	 * @return mixed
 	 */
-	function quietCall( callable $callback /*, parameters... */ ) {
-		return call_user_func_array( [ AtEase::class, 'quietCall' ], func_get_args() );
+	public static function quietCall( callable $callback /*, parameters... */ ) {
+		$args = array_slice( func_get_args(), 1 );
+		self::suppressWarnings();
+		$rv = call_user_func_array( $callback, $args );
+		self::restoreWarnings();
+		return $rv;
 	}
+
 }

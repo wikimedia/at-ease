@@ -14,6 +14,9 @@
 		}
 	],
 	"autoload": {
+		"psr-4": {
+			"Wikimedia\\AtEase\\": "src/Wikimedia/AtEase/"
+		},
 		"files": [
 			"src/Wikimedia/Functions.php"
 		]

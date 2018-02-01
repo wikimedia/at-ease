@@ -18,7 +18,9 @@
  * @file
  */
 
-class FunctionsTest extends PHPUnit\Framework\TestCase {
+namespace Wikimedia\AtEase;
+
+class AtEaseTest extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * Ensure that operations that would normally trigger warnings are passed
@@ -26,9 +28,9 @@ class FunctionsTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testWarningSuppression() {
 		$a = [];
-		\Wikimedia\suppressWarnings();
+		AtEase::suppressWarnings();
 		$a['unsetkey'];
-		\Wikimedia\restoreWarnings();
+		AtEase::restoreWarnings();
 		// No warnings generated
 		$this->assertTrue( true );
 	}
@@ -42,7 +44,7 @@ class FunctionsTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Ensure that Wikimedia\quietCall calls the callback function with the
+	 * Ensure that AtEase::quietCall calls the callback function with the
 	 * correct parameters, that it returns the callback's return value, and
 	 * that warnings (if any) are suppressed.
 	 */
@@ -52,31 +54,32 @@ class FunctionsTest extends PHPUnit\Framework\TestCase {
 		};
 
 		$this->assertEquals(
-			\Wikimedia\quietCall( 'filemtime', __FILE__ ),
+			AtEase::quietCall( 'filemtime', __FILE__ ),
 			filemtime( __FILE__ ),
 			'with built-in function'
 		);
 
 		$this->assertEquals(
-			\Wikimedia\quietCall( 'FunctionsTest::dummyStaticMethod', 24 ),
+			AtEase::quietCall( __CLASS__ . '::dummyStaticMethod', 24 ),
 			self::dummyStaticMethod( 24 ),
 			'with static method'
 		);
 
 		$this->assertEquals(
-			\Wikimedia\quietCall( [ $this, 'dummyInstanceMethod' ], 24 ),
+			AtEase::quietCall( [ $this, 'dummyInstanceMethod' ], 24 ),
 			$this->dummyInstanceMethod( 24 ),
 			'with instance method'
 		);
 
 		$this->assertEquals(
-			\Wikimedia\quietCall( $double, 24 ),
+			AtEase::quietCall( $double, 24 ),
 			$double( 24 ),
 			'with closure'
 		);
 
 		$this->assertFalse(
-			\Wikimedia\quietCall( 'filemtime', '/this/file/does/not/exist' )
+			AtEase::quietCall( 'filemtime', '/this/file/does/not/exist' )
 		);
 	}
+
 }
