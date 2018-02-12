@@ -26,13 +26,13 @@ Usage
 -----
 
     // Suppress warnings in a block of code:
-    \MediaWiki\suppressWarnings();
+    \Wikimedia\suppressWarnings();
     $content = file_get_contents( 'foobar.txt' );
-    \MediaWiki\restoreWarnings();
+    \Wikimedia\restoreWarnings();
 
 
     // ..or in a callback function:
-    \MediaWiki\quietCall( 'file_get_contents', 'foobar.txt' );
+    \Wikimedia\quietCall( 'file_get_contents', 'foobar.txt' );
 
 
 Running tests
