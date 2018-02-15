@@ -18,7 +18,7 @@
  * @file
  */
 
-class FunctionsTest extends PHPUnit_Framework_TestCase {
+class FunctionsTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Ensure that operations that would normally trigger warnings are passed
