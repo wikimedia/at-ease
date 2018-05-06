@@ -2,7 +2,7 @@
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutOutputDuringTests="true">
 	<testsuites>
-		<testsuite name="at-ease tests">
+		<testsuite name="at-ease Tests">
 			<directory>./tests</directory>
 		</testsuite>
 	</testsuites>
