@@ -20,6 +20,7 @@
 
 * src: Remove compatibility with the `MediaWiki\` namespace,
   use `Wikimedia\` instead.
+* build: Raised PHP requirement to 7.0.0.
 
 ## v1.2.0
 
