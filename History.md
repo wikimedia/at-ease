@@ -1,6 +1,6 @@
 # Release History
 
-## [Unreleased]
+## v2.0.0
 
 ### Added
 
