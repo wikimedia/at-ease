@@ -23,6 +23,7 @@ namespace Wikimedia;
 use Wikimedia\AtEase\AtEase;
 
 if ( !function_exists( __NAMESPACE__ . '\\suppressWarnings' ) ) {
+
 	/**
 	 * Reference-counted warning suppression
 	 *
@@ -52,4 +53,5 @@ if ( !function_exists( __NAMESPACE__ . '\\suppressWarnings' ) ) {
 	function quietCall( callable $callback /*, parameters... */ ) {
 		return call_user_func_array( [ AtEase::class, 'quietCall' ], func_get_args() );
 	}
+
 }
