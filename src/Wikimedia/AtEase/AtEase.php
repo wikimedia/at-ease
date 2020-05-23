@@ -70,8 +70,11 @@ class AtEase {
 	public static function quietCall( callable $callback /*, parameters... */ ) {
 		$args = array_slice( func_get_args(), 1 );
 		self::suppressWarnings();
-		$rv = call_user_func_array( $callback, $args );
-		self::restoreWarnings();
+		try {
+			$rv = call_user_func_array( $callback, $args );
+		} finally {
+			self::restoreWarnings();
+		}
 		return $rv;
 	}
 

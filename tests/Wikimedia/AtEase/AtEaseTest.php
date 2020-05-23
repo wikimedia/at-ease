@@ -22,6 +22,29 @@ namespace Wikimedia\AtEase;
 
 class AtEaseTest extends \PHPUnit\Framework\TestCase {
 
+	/** @var int|null */
+	private $originalPhpErrorFilter;
+
+	/**
+	 * @before
+	 */
+	protected function phpErrorFilterSetUp() {
+		$this->originalPhpErrorFilter = intval( ini_get( 'error_reporting' ) );
+	}
+
+	/**
+	 * @after
+	 */
+	protected function phpErrorFilterTearDown() {
+		$phpErrorFilter = intval( ini_get( 'error_reporting' ) );
+
+		if ( $phpErrorFilter !== $this->originalPhpErrorFilter ) {
+			ini_set( 'error_reporting', $this->originalPhpErrorFilter );
+			$this->fail( "PHP error_reporting setting found dirty."
+				. " Did you forget AtEase::restoreWarnings?" );
+		}
+	}
+
 	/**
 	 * Ensure that operations that would normally trigger warnings are passed
 	 * over in silence when enclosed in warning suppress / restore calls.
@@ -82,4 +105,11 @@ class AtEaseTest extends \PHPUnit\Framework\TestCase {
 		);
 	}
 
+	public function testQuietCallException() {
+		$exception = function () {
+			throw new \RuntimeException();
+		};
+		$this->expectException( \RuntimeException::class );
+		AtEase::quietCall( $exception );
+	}
 }
