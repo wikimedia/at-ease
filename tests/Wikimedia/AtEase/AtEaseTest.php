@@ -72,7 +72,7 @@ class AtEaseTest extends \PHPUnit\Framework\TestCase {
 	 * that warnings (if any) are suppressed.
 	 */
 	public function testQuietCall() {
-		$double = function ( $num ) {
+		$double = static function ( $num ) {
 			return $num * 2;
 		};
 
@@ -106,7 +106,7 @@ class AtEaseTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	public function testQuietCallException() {
-		$exception = function () {
+		$exception = static function () {
 			throw new \RuntimeException();
 		};
 		$this->expectException( \RuntimeException::class );

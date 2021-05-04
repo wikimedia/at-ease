@@ -49,7 +49,7 @@ class FunctionsTest extends \PHPUnit\Framework\TestCase {
 	 * that warnings (if any) are suppressed.
 	 */
 	public function testQuietCall() {
-		$double = function ( $num ) {
+		$double = static function ( $num ) {
 			return $num * 2;
 		};
 
