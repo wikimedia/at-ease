@@ -16,10 +16,7 @@
 	"autoload": {
 		"psr-4": {
 			"Wikimedia\\AtEase\\": "src/Wikimedia/AtEase/"
-		},
-		"files": [
-			"src/Wikimedia/Functions.php"
-		]
+		}
 	},
 	"require": {
 		"php": ">=7.2.9"
