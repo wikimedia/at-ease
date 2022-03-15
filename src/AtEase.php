@@ -22,6 +22,8 @@ namespace Wikimedia\AtEase;
 
 class AtEase {
 	private static $suppressCount = 0;
+
+	/** @var false|int */
 	private static $originalLevel = false;
 
 	/**
@@ -69,6 +71,7 @@ class AtEase {
 	 */
 	public static function quietCall( callable $callback, ...$args ) {
 		self::suppressWarnings();
+		$rv = null;
 		try {
 			$rv = $callback( ...$args );
 		} finally {
