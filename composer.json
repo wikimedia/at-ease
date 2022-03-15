@@ -15,7 +15,7 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"Wikimedia\\AtEase\\": "src/Wikimedia/AtEase/"
+			"Wikimedia\\AtEase\\": "src/"
 		}
 	},
 	"require": {
