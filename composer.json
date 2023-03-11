@@ -22,7 +22,7 @@
 		"php": ">=7.4"
 	},
 	"require-dev": {
-		"mediawiki/mediawiki-codesniffer": "40.0.1",
+		"mediawiki/mediawiki-codesniffer": "41.0.0",
 		"mediawiki/mediawiki-phan-config": "0.12.0",
 		"mediawiki/minus-x": "1.1.1",
 		"ockcyp/covers-validator": "1.6.0",
