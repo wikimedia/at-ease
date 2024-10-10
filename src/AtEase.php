@@ -41,15 +41,27 @@ class AtEase {
 			}
 		} else {
 			if ( !self::$suppressCount ) {
-				self::$originalLevel = error_reporting( E_ALL & ~(
-					E_WARNING |
-					E_NOTICE |
-					E_USER_WARNING |
-					E_USER_NOTICE |
-					E_DEPRECATED |
-					E_USER_DEPRECATED |
-					E_STRICT
-				) );
+				// T375707 - E_STRICT is deprecated on PHP >= 8.4
+				if ( PHP_VERSION_ID < 80400 ) {
+					self::$originalLevel = error_reporting( E_ALL & ~(
+						E_WARNING |
+						E_NOTICE |
+						E_USER_WARNING |
+						E_USER_NOTICE |
+						E_DEPRECATED |
+						E_USER_DEPRECATED |
+						E_STRICT
+					) );
+				} else {
+					self::$originalLevel = error_reporting( E_ALL & ~(
+						E_WARNING |
+						E_NOTICE |
+						E_USER_WARNING |
+						E_USER_NOTICE |
+						E_DEPRECATED |
+						E_USER_DEPRECATED
+					) );
+				}
 			}
 			++self::$suppressCount;
 		}
