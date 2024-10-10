@@ -20,7 +20,10 @@
 
 namespace Wikimedia\AtEase;
 
-class AtEaseTest extends \PHPUnit\Framework\TestCase {
+use PHPUnit\Framework\TestCase;
+use RuntimeException;
+
+class AtEaseTest extends TestCase {
 
 	/** @var int|null */
 	private $originalPhpErrorFilter;
@@ -69,7 +72,7 @@ class AtEaseTest extends \PHPUnit\Framework\TestCase {
 	/**
 	 * Ensure that AtEase::quietCall calls the callback function with the
 	 * correct parameters, that it returns the callback's return value, and
-	 * that warnings (if any) are suppressed.
+	 * that the warnings (if any) are suppressed.
 	 */
 	public function testQuietCall() {
 		$double = static function ( $num ) {
@@ -107,9 +110,9 @@ class AtEaseTest extends \PHPUnit\Framework\TestCase {
 
 	public function testQuietCallException() {
 		$exception = static function () {
-			throw new \RuntimeException();
+			throw new RuntimeException();
 		};
-		$this->expectException( \RuntimeException::class );
+		$this->expectException( RuntimeException::class );
 		AtEase::quietCall( $exception );
 	}
 }
