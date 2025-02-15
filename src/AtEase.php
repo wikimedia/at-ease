@@ -21,7 +21,7 @@
 namespace Wikimedia\AtEase;
 
 class AtEase {
-	private static $suppressCount = 0;
+	private static int $suppressCount = 0;
 
 	/** @var false|int */
 	private static $originalLevel = false;
