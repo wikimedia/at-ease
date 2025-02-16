@@ -23,6 +23,9 @@ namespace Wikimedia\AtEase;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
+/**
+ * @covers \Wikimedia\AtEase\AtEase
+ */
 class AtEaseTest extends TestCase {
 
 	/** @var int|null */
