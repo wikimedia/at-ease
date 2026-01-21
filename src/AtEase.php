@@ -16,6 +16,8 @@ class AtEase {
 	 * Reference-counted warning suppression
 	 *
 	 * @param bool $end Whether to restore warnings
+	 *
+	 * @deprecated (T253461) PHP 7+ ensures `@` does not suppress fatal errors. Use the native operator.
 	 */
 	public static function suppressWarnings( $end = false ) {
 		if ( $end ) {
@@ -55,8 +57,11 @@ class AtEase {
 
 	/**
 	 * Restore error level to previous value
+	 *
+	 * @deprecated (T253461) PHP 7+ ensures `@` does not suppress fatal errors. Use the native operator.
 	 */
 	public static function restoreWarnings() {
+		// @phan-suppress-next-line PhanDeprecatedFunction
 		self::suppressWarnings( true );
 	}
 
@@ -66,13 +71,17 @@ class AtEase {
 	 * @param callable $callback Function to call
 	 * @param mixed ...$args Optional arguments for the function call
 	 * @return mixed
+	 *
+	 * @deprecated (T253461) PHP 7+ ensures `@` does not suppress fatal errors. Use the native operator.
 	 */
 	public static function quietCall( callable $callback, ...$args ) {
+		// @phan-suppress-next-line PhanDeprecatedFunction
 		self::suppressWarnings();
 		$rv = null;
 		try {
 			$rv = $callback( ...$args );
 		} finally {
+			// @phan-suppress-next-line PhanDeprecatedFunction
 			self::restoreWarnings();
 		}
 		return $rv;
