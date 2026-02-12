@@ -38,6 +38,7 @@ class AtEase {
 						E_USER_NOTICE |
 						E_DEPRECATED |
 						E_USER_DEPRECATED |
+						// @phan-suppress-next-line PhanDeprecatedGlobalConstant
 						E_STRICT
 					) );
 				} else {
